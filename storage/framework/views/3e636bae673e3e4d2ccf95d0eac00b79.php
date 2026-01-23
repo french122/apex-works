@@ -111,3 +111,4 @@
     </div>
 </footer>
 
+<?php /**PATH C:\laragon\www\apex-works\resources\views/frontend/layouts/footer.blade.php ENDPATH**/ ?>

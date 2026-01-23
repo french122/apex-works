@@ -1,7 +1,4 @@
-@extends('frontend.layouts.pages.master-homepage')
-
-
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
     .panel-item {
         flex: 1;
@@ -40,13 +37,14 @@
         animation-play-state: paused;
     }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
 
-@section('content')
-    @include('frontend.section.hero-banner')
-    @include('frontend.section.about')
-    @include('frontend.section.brands')
+<?php $__env->startSection('content'); ?>
+    <?php echo $__env->make('frontend.section.hero-banner', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php echo $__env->make('frontend.section.about', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
+    <?php echo $__env->make('frontend.section.brands', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
     <style>
     @keyframes scroll {
         0% {
@@ -63,4 +61,6 @@
         animation-play-state: paused;
     }
 </style>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.layouts.pages.master-homepage', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\apex-works\resources\views/frontend/pages/show.blade.php ENDPATH**/ ?>

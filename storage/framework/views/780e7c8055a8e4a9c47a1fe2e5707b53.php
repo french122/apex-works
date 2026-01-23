@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'ApexWorks')</title>
-    <meta name="description" content="@yield('description', 'Spesialis lanyard custom berkualitas. Konsultasi, bantuan desain, opsi pengiriman, dan garansi kualitas.')">
-    <link rel="icon" type="image/jpeg" href="{{ asset('assets/apex favicon.jpeg') }}">
+    <title><?php echo $__env->yieldContent('title', 'ApexWorks'); ?></title>
+    <meta name="description" content="<?php echo $__env->yieldContent('description', 'Spesialis lanyard custom berkualitas. Konsultasi, bantuan desain, opsi pengiriman, dan garansi kualitas.'); ?>">
+    <link rel="icon" type="image/jpeg" href="<?php echo e(asset('assets/apex favicon.jpeg')); ?>">
 
     <!-- Fonts - Luminaire Style -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
 
     <style>
         [x-cloak] { display: none !important; }
@@ -33,20 +33,20 @@
         }
     </style>
 
-    @stack('styles')
+    <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
 <body class="bg-white text-gray-900 antialiased">
 
     <!-- Navigation -->
-    @include('frontend.layouts.navmenu')
+    <?php echo $__env->make('frontend.layouts.navmenu', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
     <!-- Main Content -->
     <main>
-        @yield('content')
+        <?php echo $__env->yieldContent('content'); ?>
     </main>
 
     <!-- Footer -->
-    @include('frontend.layouts.footer')
+    <?php echo $__env->make('frontend.layouts.footer', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 
 
@@ -154,6 +154,7 @@
     });
     </script>
 
-    @stack('scripts')
+    <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 </html>
+<?php /**PATH C:\laragon\www\apex-works\resources\views/frontend/layouts/pages/master-homepage.blade.php ENDPATH**/ ?>

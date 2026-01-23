@@ -13,17 +13,18 @@
                 </button>
 
                 <!-- Lanyard Shop Button -->
-                @foreach ($navbarItems ?? [] as $item)
+                <?php $__currentLoopData = $navbarItems ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                    @if ($item->is_button)
-                        <a href="{{ $item->menu_url ?? "#" }}"
-                             @if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
+                    <?php if($item->is_button): ?>
+                        <a href="<?php echo e($item->menu_url ?? "#"); ?>"
+                             <?php if($item->open_new_tab): ?> target="_blank" rel="noopener noreferrer" <?php endif; ?>
                             class="border border-gray-900 px-6 py-3 text-sm font-medium tracking-wider hover:bg-gray-900 hover:text-white transition-colors rounded-xl">
-                           {{ $item->menu_label}}
-                        </a>
-                    @endif
+                           <?php echo e($item->menu_label); ?>
 
-                @endforeach
+                        </a>
+                    <?php endif; ?>
+
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
 
 
@@ -33,16 +34,13 @@
 
             <!-- Center - Logo -->
             <div class="flex-shrink-0">
-                <a href="{{ '#'  }}" class="flex flex-col items-center group">
+                <a href="<?php echo e('#'); ?>" class="flex flex-col items-center group">
                     <!-- Logo Icon -->
                     <div class="text-3xl font-bold mb-1">
-                        <img src="{{ asset('assets/apex favicon.jpeg') }}" alt="Apex Works Logo" class="w-20 h-20">
-                        {{-- <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20 5L30 15L20 35L10 15L20 5Z" fill="currentColor"/>
-                            <path d="M15 12L25 12L20 25L15 12Z" fill="white"/>
-                        </svg> --}}
+                        <img src="<?php echo e(asset('assets/apex favicon.jpeg')); ?>" alt="Apex Works Logo" class="w-20 h-20">
+                        
                     </div>
-                    {{-- <span class="text-xl font-bold tracking-widest text-gray-900">APEX WORKS</span> --}}
+                    
                 </a>
             </div>
 
@@ -52,21 +50,6 @@
 
             <!-- Right Side - Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8">
-                @foreach($navbarItems ?? [] as $item)
-                    @if(!$item->is_button)
-                        {{-- <a href="{{ $item->menu_url ?? '#' }}"
-                           //@if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
-                           class="text-sm font-medium tracking-wider transition-colors {{ $item->button_style === 'primary' ? 'bg-gray-900 text-white px-6 py-2 hover:bg-gray-800' : 'border border-gray-900 px-6 py-2 hover:bg-gray-900 hover:text-white' }}">
-                            {{ strtoupper($item->menu_label) }}
-                        </a> --}}
-                    {{-- //@else --}}
-                        <a href="{{ $item->menu_url ?? '#' }}"
-                           @if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
-                           class="text-sm font-medium tracking-wider text-gray-700 hover:text-gray-900 transition-colors {{ request()->is(trim($item->menu_slug, '/')) ? 'text-gray-900 font-semibold' : '' }}">
-                            {{ strtoupper($item->menu_label) }}
-                        </a>
-                    @endif
-                @endforeach
 
                 <button @click="searchOpen = !searchOpen" class="flex items-center text-sm font-medium tracking-wider text-gray-700 hover:text-gray-900 transition-colors">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,7 +83,7 @@
          x-transition:leave-end="opacity-0 -translate-y-2"
          class="absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg py-12">
         <div class="max-w-2xl mx-auto px-4">
-            <form action="{{ '#'  }}" method="GET" class="flex items-center border-b-2 border-gray-300 focus-within:border-gray-900 transition-colors">
+            <form action="<?php echo e('#'); ?>" method="GET" class="flex items-center border-b-2 border-gray-300 focus-within:border-gray-900 transition-colors">
                 <input type="text"
                        name="search"
                        placeholder="Cari produk kami..."
@@ -160,7 +143,7 @@
 
 
                 <!-- Lanyard Shop Button -->
-                <a href="{{ '#'  }}" class="border border-gray-900 px-6 py-3 text-sm font-medium tracking-wider hover:bg-gray-900 hover:text-white transition-colors rounded-xl">
+                <a href="<?php echo e('#'); ?>" class="border border-gray-900 px-6 py-3 text-sm font-medium tracking-wider hover:bg-gray-900 hover:text-white transition-colors rounded-xl">
                     LANYARD SHOP
                 </a>
 
@@ -179,41 +162,45 @@
 
         <!-- Sidebar Menu -->
         <div class="p-6 space-y-1">
-            @foreach($sidebarItems ?? [] as $item)
-                @if($item->is_button)
-                    <a href="{{ $item->menu_url ?? '#' }}"
-                       @if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
-                       class="block py-3 text-base tracking-wider transition-colors rounded-xl {{ $item->button_style === 'primary' ? 'bg-gray-900 text-white px-4 py-3 hover:bg-gray-800' : 'border border-gray-900 px-4 py-3 hover:bg-gray-900 hover:text-white' }}">
-                        {{ strtoupper($item->menu_label) }}
+            <?php $__currentLoopData = $sidebarItems ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php if($item->is_button): ?>
+                    <a href="<?php echo e($item->menu_url ?? '#'); ?>"
+                       <?php if($item->open_new_tab): ?> target="_blank" rel="noopener noreferrer" <?php endif; ?>
+                       class="block py-3 text-base tracking-wider transition-colors rounded-xl <?php echo e($item->button_style === 'primary' ? 'bg-gray-900 text-white px-4 py-3 hover:bg-gray-800' : 'border border-gray-900 px-4 py-3 hover:bg-gray-900 hover:text-white'); ?>">
+                        <?php echo e(strtoupper($item->menu_label)); ?>
+
                     </a>
 
-                @else
-                    <a href="{{ $item->menu_url ?? '#' }}"
-                       @if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
-                       class="block py-3 text-gray-700 hover:text-gray-900 transition-colors text-base tracking-wider {{ request()->is(trim($item->menu_slug, '/')) ? 'text-gray-900 font-semibold' : '' }}">
-                        @if($item->menu_icon)
-                            <i class="{{ $item->menu_icon }} mr-2"></i>
-                        @endif
-                        {{ strtoupper($item->menu_label) }}
+                <?php else: ?>
+                    <a href="<?php echo e($item->menu_url ?? '#'); ?>"
+                       <?php if($item->open_new_tab): ?> target="_blank" rel="noopener noreferrer" <?php endif; ?>
+                       class="block py-3 text-gray-700 hover:text-gray-900 transition-colors text-base tracking-wider <?php echo e(request()->is(trim($item->menu_slug, '/')) ? 'text-gray-900 font-semibold' : ''); ?>">
+                        <?php if($item->menu_icon): ?>
+                            <i class="<?php echo e($item->menu_icon); ?> mr-2"></i>
+                        <?php endif; ?>
+                        <?php echo e(strtoupper($item->menu_label)); ?>
+
                     </a>
 
 
 
-                    @if($item->children->count() > 0)
+                    <?php if($item->children->count() > 0): ?>
                         <div class="ml-6 space-y-1">
-                            @foreach($item->children as $child)
-                                <a href="{{ $child->menu_url ?? '#' }}"
-                                   @if($child->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
-                                   class="block py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors tracking-wider {{ request()->is(trim($child->menu_slug, '/')) ? 'text-gray-900 font-semibold' : '' }}">
-                                    {{ strtoupper($child->menu_label) }}
+                            <?php $__currentLoopData = $item->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $child): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <a href="<?php echo e($child->menu_url ?? '#'); ?>"
+                                   <?php if($child->open_new_tab): ?> target="_blank" rel="noopener noreferrer" <?php endif; ?>
+                                   class="block py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors tracking-wider <?php echo e(request()->is(trim($child->menu_slug, '/')) ? 'text-gray-900 font-semibold' : ''); ?>">
+                                    <?php echo e(strtoupper($child->menu_label)); ?>
+
                                 </a>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
-                    @endif
+                    <?php endif; ?>
 
 
-                @endif
-            @endforeach
+                <?php endif; ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </nav>
+<?php /**PATH C:\laragon\www\apex-works\resources\views/frontend/layouts/navmenu.blade.php ENDPATH**/ ?>

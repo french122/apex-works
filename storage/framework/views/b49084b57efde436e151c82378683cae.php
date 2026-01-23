@@ -11,13 +11,13 @@
                 <!-- Ganti dengan gambar sequence kamu, contoh 5 frame -->
                 <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:1;" loading="lazy">
                 <img src="https://images.unsplash.com/photo-1461632830798-3adb3034e4c8?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:2;" loading="lazy">
-                <img src="{{ ('assets/images/hero/bg-1.jpg') }}" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:3;" loading="lazy">
+                <img src="<?php echo e(('assets/images/hero/bg-1.jpg')); ?>" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:3;" loading="lazy">
                 <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:4;" loading="lazy">
-                <img src="{{ ('assets/images/hero/mobil1.jpg') }}" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:5;" loading="lazy">
+                <img src="<?php echo e(('assets/images/hero/mobil1.jpg')); ?>" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:5;" loading="lazy">
             </div>
         </div>
-        <h2 class="text-white text-4xl md:text-6xl font-bold mt-12 text-center tracking-tight">Cinematic Scroll Animation</h2>
-        <p class="text-gray-300 text-lg mt-4 text-center max-w-2xl">Scroll untuk melihat animasi produk secara sinematik, step by step, seperti website otomotif premium.</p>
+        <h2 class="text-white text-4xl md:text-6xl font-bold mt-12 text-center tracking-tight text-reveal">Cinematic Scroll Animation</h2>
+        <p class="text-gray-300 text-lg mt-4 text-center max-w-2xl text-reveal">Scroll untuk melihat animasi produk secara sinematik, step by step, seperti website otomotif premium.</p>
     </div>
 </section>
 
@@ -27,16 +27,16 @@
     <div class="absolute inset-0 z-10 pointer-events-none" style="background: linear-gradient(180deg,rgba(20,20,20,0.0) 40%,rgba(20,20,20,0.85) 90%);"></div>
     <!-- Foreground PNG (parallax) -->
     <div class="w-full flex justify-center items-end relative z-20" style="height:70vh; min-height:350px;">
-        <img src="{{ ('assets/images/hero/mobil1-removebg-preview.png') }}" alt="Produk Mobil" class="parallax-foreground pointer-events-none select-none drop-shadow-2xl"
+        <img src="<?php echo e(('assets/images/hero/mobil1-removebg-preview.png')); ?>" alt="Produk Mobil" class="parallax-foreground pointer-events-none select-none drop-shadow-2xl"
             style="position:relative; width:80vw; max-width:1100px; min-width:320px; height:auto; will-change:transform; z-index:2; object-fit:contain; display:block; margin:0 auto; filter: drop-shadow(0 12px 40px rgba(0,0,0,0.7));" loading="lazy">
     </div>
     <!-- Text Content Modern Layout -->
     <div class="absolute bottom-0 left-0 w-full flex flex-col md:flex-row justify-between items-end z-30 px-8 pb-12 gap-8">
         <div class="text-white max-w-xl mb-8 md:mb-0">
-            <h2 class="text-4xl md:text-6xl font-bold leading-tight drop-shadow-lg mb-4">Ready for electric<br>exploration</h2>
+            <h2 class="text-4xl md:text-6xl font-bold leading-tight drop-shadow-lg mb-4 text-reveal">Ready for electric<br>exploration</h2>
         </div>
         <div class="flex flex-col items-start md:items-end max-w-lg">
-            <p class="text-gray-200 text-lg mb-6 text-left md:text-right drop-shadow">Dengan desain premium, efek parallax modern, dan hanya mobil (PNG) yang bergerak saat scroll. Background dan teks tetap statis, menonjolkan produk secara sinematik.</p>
+            <p class="text-gray-200 text-lg mb-6 text-left md:text-right drop-shadow text-reveal">Dengan desain premium, efek parallax modern, dan hanya mobil (PNG) yang bergerak saat scroll. Background dan teks tetap statis, menonjolkan produk secara sinematik.</p>
             <a href="#" class="bg-white text-black font-semibold rounded-full px-8 py-3 shadow-lg hover:bg-gray-200 transition-all text-lg">Explore produk</a>
         </div>
     </div>
@@ -51,7 +51,7 @@
             {
                 headline: 'THE MOST ANTICIPATED TEST',
                 desc: 'The 296 Challenge undergoes international press scrutiny at the Monteblanco circuit',
-                img: '{{ ('assets/images/hero/ferrari2.jpg') }}',
+                img: '<?php echo e(('assets/images/hero/ferrari2.jpg')); ?>',
                 alt: 'Ferrari 296 Challenge Monteblanco',
                 link: '#'
             },
@@ -101,10 +101,10 @@
                         </svg>
                     </button>
                         <div class="mt-8 md:mt-0">
-                            <h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-8 text-gray-900 tracking-tight uppercase" style="font-family: 'Montserrat', Arial, sans-serif;">
+                            <h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-8 text-gray-900 tracking-tight uppercase text-reveal" style="font-family: 'Montserrat', Arial, sans-serif;">
                                 <span x-text="slide.headline"></span>
                             </h2>
-                            <p class="text-xl text-gray-800 mb-12 max-w-lg font-medium" style="font-family: 'Montserrat', Arial, sans-serif;">
+                            <p class="text-xl text-gray-800 mb-12 max-w-lg font-medium text-reveal" style="font-family: 'Montserrat', Arial, sans-serif;">
                                 <span x-text="slide.desc"></span>
                             </p>
                             <a :href="slide.link" class="inline-flex items-center group text-xl font-semibold text-gray-900 hover:text-red-600 transition-colors">
@@ -141,6 +141,42 @@
         </div>
     </div>
 </section>
+</section>
+
+<!-- Text Reveal Animation CSS & JS -->
+<style>
+.text-reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+        opacity 0.6s cubic-bezier(0.23,1,0.32,1),
+        transform 0.6s cubic-bezier(0.23,1,0.32,1);
+    will-change: opacity, transform;
+}
+.text-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const revealEls = Array.from(document.querySelectorAll('.text-reveal'));
+    if (!revealEls.length) return;
+    const stagger = 100; // ms, between 80–120ms
+    function revealOnScroll() {
+        let delay = 0;
+        revealEls.forEach((el, i) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 32) {
+                setTimeout(() => el.classList.add('revealed'), delay);
+                delay += stagger;
+            }
+        });
+    }
+    window.addEventListener('scroll', revealOnScroll, { passive: true });
+    revealOnScroll();
+});
+</script>
 
 
 </section>
@@ -178,7 +214,7 @@
         <div id="auto-scroll-row" class="relative w-full overflow-x-hidden">
             <div class="flex gap-6 animate-editorial-scroll will-change-transform min-w-max">
                 <!-- Editorial Cards Set 1 -->
-                @php
+                <?php
                 $editorialCards = [
                     [
                         'img' => 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80',
@@ -211,20 +247,20 @@
                         'action' => 'Explore',
                     ],
                 ];
-                @endphp
-                @for ($i = 0; $i < 2; $i++)
-                    @foreach ($editorialCards as $card)
+                ?>
+                <?php for($i = 0; $i < 2; $i++): ?>
+                    <?php $__currentLoopData = $editorialCards; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $card): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="h-[260px] w-72 overflow-hidden relative group shadow-lg flex-shrink-0 rounded-xl">
-                        <img src="{{ $card['img'] }}" alt="Article" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <img src="<?php echo e($card['img']); ?>" alt="Article" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent transition-opacity duration-500 group-hover:opacity-80"></div>
                         <div class="absolute bottom-0 left-0 p-5 w-full">
-                            <span class="text-xs font-semibold uppercase text-gray-200 mb-1 block">{{ $card['category'] }}</span>
-                            <h4 class="text-lg font-bold text-white mb-2 leading-tight">{{ $card['title'] }}</h4>
-                            <a href="#" class="text-white text-sm font-semibold bg-black/40 px-4 py-1 hover:bg-black/70 transition">{{ $card['action'] }}</a>
+                            <span class="text-xs font-semibold uppercase text-gray-200 mb-1 block"><?php echo e($card['category']); ?></span>
+                            <h4 class="text-lg font-bold text-white mb-2 leading-tight"><?php echo e($card['title']); ?></h4>
+                            <a href="#" class="text-white text-sm font-semibold bg-black/40 px-4 py-1 hover:bg-black/70 transition"><?php echo e($card['action']); ?></a>
                         </div>
                     </div>
-                    @endforeach
-                @endfor
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php endfor; ?>
             </div>
             <style>
             @keyframes editorial-scroll {
@@ -239,3 +275,4 @@
     </div>
 </div>
 </section>
+<?php /**PATH C:\laragon\www\apex-works\resources\views/frontend/section/about.blade.php ENDPATH**/ ?>

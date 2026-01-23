@@ -1,7 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+// Frontend
+use App\Http\Controllers\Frontend\FrontendController;
+
+// Auth
 use App\Http\Controllers\Auth\AuthController;
+
+// Backend
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CompleteCountController;
@@ -11,46 +18,53 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\SectionHeroController;
 use App\Http\Controllers\Backend\SectionAboutController;
 use App\Http\Controllers\Backend\HeaderController;
-use App\Http\Controllers\Frontend\FrontendController;
 
-Route::get('/', [FrontendController::class, 'index'])->name('home');
+/*
+|--------------------------------------------------------------------------
+| FRONTEND / PUBLIC ROUTES
+|--------------------------------------------------------------------------
+*/
+Route::controller(FrontendController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
 
-Route::group(['prefix' => 'cihuy'], function () {
+    Route::get('/produk', 'produk')->name('produk');
+    Route::get('/produk/{slug}', 'produkShow')->name('produk.show');
 
-    // Authentication Routes
+    Route::get('/blog', 'blog')->name('blog');
+    Route::get('/testimoni', 'testimoni')->name('testimoni');
+    Route::get('/tentang', 'tentang')->name('tentang');
+    Route::get('/portfolio', 'portfolio')->name('portfolio');
+
+    Route::get('/kontak', 'kontak')->name('kontak');
+    Route::post('/kontak', 'submitKontak')->name('kontak.submit');
+});
+
+/*
+|--------------------------------------------------------------------------
+| AUTH ROUTES
+|--------------------------------------------------------------------------
+*/
+Route::prefix('cihuy')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    
 });
 
-// Backend Routes (Protected by auth middleware)
-Route::middleware(['auth'])->group(function () {
-    Route::prefix('bagoosh')->name('backend.')->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        
-        // Brand Routes
-        Route::resource('brands', BrandController::class);
-        
-        // Complete Count Routes
-        Route::resource('complete-count', CompleteCountController::class);
-        
-        // Social Links Routes
-        Route::resource('social-links', SocialLinkController::class);
-        
-        // Footer Routes
-        Route::resource('footer', FooterController::class);
-        
-        // User Routes
-        Route::resource('users', UserController::class);
-        
-        // Section Hero Routes
-        Route::resource('section-hero', SectionHeroController::class);
-        
-        // Section About Routes
-        Route::resource('section-about', SectionAboutController::class);
-        
-        // Header/Navbar Routes
-        Route::resource('header', HeaderController::class);
-    });
+/*
+|--------------------------------------------------------------------------
+| BACKEND / ADMIN ROUTES
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->prefix('bagoosh')->name('backend.')->group(function () {
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('brands', BrandController::class);
+    Route::resource('complete-count', CompleteCountController::class);
+    Route::resource('social-links', SocialLinkController::class);
+    Route::resource('footer', FooterController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('section-hero', SectionHeroController::class);
+    Route::resource('section-about', SectionAboutController::class);
+    Route::resource('header', HeaderController::class);
 });
