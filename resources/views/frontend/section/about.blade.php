@@ -4,21 +4,71 @@
 </section>
 
 <!-- Cinematic Scroll-Driven Animation Section -->
-<section id="scroll-cinematic" class="relative bg-black py-32 overflow-hidden">
+<section id="scroll-cinematic" class="relative bg-black py-32 overflow-visible">
+    <!-- Left Scene Indicator -->
+    <div class="hidden lg:flex fixed left-1/4 top-1/2 -translate-y-1/2 z-50 pointer-events-none justify-center">
+        <span id="scene-indicator-left" class="text-white text-3xl font-light tracking-widest opacity-40 transition-opacity duration-500">01</span>
+    </div>
+
+    <!-- Right Scene Indicator -->
+    <div class="hidden lg:flex fixed right-1/4 top-1/2 -translate-y-1/2 z-50 pointer-events-none justify-center">
+        <span id="scene-indicator-right" class="text-white text-3xl font-light tracking-widest opacity-40 transition-opacity duration-500">01</span>
+    </div>
+
     <div class="max-w-5xl mx-auto flex flex-col items-center justify-center min-h-[80vh]">
         <div class="relative w-full h-[500px]">
             <div id="image-sequence" class="absolute inset-0 w-full h-full flex items-center justify-center">
                 <!-- Ganti dengan gambar sequence kamu, contoh 5 frame -->
-                <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:1;" loading="lazy">
-                <img src="https://images.unsplash.com/photo-1461632830798-3adb3034e4c8?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:2;" loading="lazy">
-                <img src="{{ ('assets/images/hero/bg-1.jpg') }}" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:3;" loading="lazy">
-                <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:4;" loading="lazy">
-                <img src="{{ ('assets/images/hero/mobil1.jpg') }}" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:5;" loading="lazy">
+                <div class="scene-wrapper absolute inset-0 w-full h-full flex items-center justify-center" data-scene="1" style="z-index:1;">
+                    <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" loading="lazy">
+                </div>
+                <div class="scene-wrapper absolute inset-0 w-full h-full flex items-center justify-center" data-scene="2" style="z-index:2;">
+                    <img src="https://images.unsplash.com/photo-1461632830798-3adb3034e4c8?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" loading="lazy">
+                </div>
+                <div class="scene-wrapper absolute inset-0 w-full h-full flex items-center justify-center" data-scene="3" style="z-index:3;">
+                    <img src="{{ ('assets/images/hero/bg-1.jpg') }}" class="seq-img absolute w-full h-full object-contain opacity-0" loading="lazy">
+                </div>
+                <div class="scene-wrapper absolute inset-0 w-full h-full flex items-center justify-center" data-scene="4" style="z-index:4;">
+                    <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" loading="lazy">
+                </div>
+                <div class="scene-wrapper absolute inset-0 w-full h-full flex items-center justify-center" data-scene="5" style="z-index:5;">
+                    <img src="{{ ('assets/images/hero/mobil1.jpg') }}" class="seq-img absolute w-full h-full object-contain opacity-0" loading="lazy">
+                </div>
             </div>
         </div>
         <h2 class="text-white text-4xl md:text-6xl font-bold mt-12 text-center tracking-tight">Cinematic Scroll Animation</h2>
         <p class="text-gray-300 text-lg mt-4 text-center max-w-2xl">Scroll untuk melihat animasi produk secara sinematik, step by step, seperti website otomotif premium.</p>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageSequence = document.getElementById('image-sequence');
+            const sceneIndicatorLeft = document.getElementById('scene-indicator-left');
+            const sceneIndicatorRight = document.getElementById('scene-indicator-right');
+            const sceneWrappers = document.querySelectorAll('.scene-wrapper');
+
+            // Update scene indicators based on image opacity
+            function updateSceneIndicators() {
+                sceneWrappers.forEach(wrapper => {
+                    const img = wrapper.querySelector('.seq-img');
+                    const sceneNum = wrapper.getAttribute('data-scene').padStart(2, '0');
+
+                    if (img && img.style.opacity > 0.5) {
+                        sceneIndicatorLeft.textContent = sceneNum;
+                        sceneIndicatorRight.textContent = sceneNum;
+                        sceneIndicatorLeft.classList.add('opacity-100');
+                        sceneIndicatorLeft.classList.remove('opacity-40');
+                        sceneIndicatorRight.classList.add('opacity-100');
+                        sceneIndicatorRight.classList.remove('opacity-40');
+                    }
+                });
+            }
+
+            // Check periodically for opacity changes
+            setInterval(updateSceneIndicators, 100);
+            updateSceneIndicators();
+        });
+    </script>
 </section>
 
 <!-- Parallax Modern Section: Static BG, PNG Foreground Parallax, Text below -->

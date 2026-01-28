@@ -4,21 +4,71 @@
 </section>
 
 <!-- Cinematic Scroll-Driven Animation Section -->
-<section id="scroll-cinematic" class="relative bg-black py-32 overflow-hidden">
+<section id="scroll-cinematic" class="relative bg-black py-32 overflow-visible">
+    <!-- Left Scene Indicator -->
+    <div class="hidden lg:flex fixed left-1/4 top-1/2 -translate-y-1/2 z-50 pointer-events-none justify-center">
+        <span id="scene-indicator-left" class="text-white text-3xl font-light tracking-widest opacity-40 transition-opacity duration-500">01</span>
+    </div>
+
+    <!-- Right Scene Indicator -->
+    <div class="hidden lg:flex fixed right-1/4 top-1/2 -translate-y-1/2 z-50 pointer-events-none justify-center">
+        <span id="scene-indicator-right" class="text-white text-3xl font-light tracking-widest opacity-40 transition-opacity duration-500">01</span>
+    </div>
+
     <div class="max-w-5xl mx-auto flex flex-col items-center justify-center min-h-[80vh]">
         <div class="relative w-full h-[500px]">
             <div id="image-sequence" class="absolute inset-0 w-full h-full flex items-center justify-center">
                 <!-- Ganti dengan gambar sequence kamu, contoh 5 frame -->
-                <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:1;" loading="lazy">
-                <img src="https://images.unsplash.com/photo-1461632830798-3adb3034e4c8?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:2;" loading="lazy">
-                <img src="<?php echo e(('assets/images/hero/bg-1.jpg')); ?>" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:3;" loading="lazy">
-                <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:4;" loading="lazy">
-                <img src="<?php echo e(('assets/images/hero/mobil1.jpg')); ?>" class="seq-img absolute w-full h-full object-contain opacity-0" style="z-index:5;" loading="lazy">
+                <div class="scene-wrapper absolute inset-0 w-full h-full flex items-center justify-center" data-scene="1" style="z-index:1;">
+                    <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" loading="lazy">
+                </div>
+                <div class="scene-wrapper absolute inset-0 w-full h-full flex items-center justify-center" data-scene="2" style="z-index:2;">
+                    <img src="https://images.unsplash.com/photo-1461632830798-3adb3034e4c8?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" loading="lazy">
+                </div>
+                <div class="scene-wrapper absolute inset-0 w-full h-full flex items-center justify-center" data-scene="3" style="z-index:3;">
+                    <img src="<?php echo e(('assets/images/hero/bg-1.jpg')); ?>" class="seq-img absolute w-full h-full object-contain opacity-0" loading="lazy">
+                </div>
+                <div class="scene-wrapper absolute inset-0 w-full h-full flex items-center justify-center" data-scene="4" style="z-index:4;">
+                    <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=900&q=80" class="seq-img absolute w-full h-full object-contain opacity-0" loading="lazy">
+                </div>
+                <div class="scene-wrapper absolute inset-0 w-full h-full flex items-center justify-center" data-scene="5" style="z-index:5;">
+                    <img src="<?php echo e(('assets/images/hero/mobil1.jpg')); ?>" class="seq-img absolute w-full h-full object-contain opacity-0" loading="lazy">
+                </div>
             </div>
         </div>
-        <h2 class="text-white text-4xl md:text-6xl font-bold mt-12 text-center tracking-tight text-reveal">Cinematic Scroll Animation</h2>
-        <p class="text-gray-300 text-lg mt-4 text-center max-w-2xl text-reveal">Scroll untuk melihat animasi produk secara sinematik, step by step, seperti website otomotif premium.</p>
+        <h2 class="text-white text-4xl md:text-6xl font-bold mt-12 text-center tracking-tight">Cinematic Scroll Animation</h2>
+        <p class="text-gray-300 text-lg mt-4 text-center max-w-2xl">Scroll untuk melihat animasi produk secara sinematik, step by step, seperti website otomotif premium.</p>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageSequence = document.getElementById('image-sequence');
+            const sceneIndicatorLeft = document.getElementById('scene-indicator-left');
+            const sceneIndicatorRight = document.getElementById('scene-indicator-right');
+            const sceneWrappers = document.querySelectorAll('.scene-wrapper');
+
+            // Update scene indicators based on image opacity
+            function updateSceneIndicators() {
+                sceneWrappers.forEach(wrapper => {
+                    const img = wrapper.querySelector('.seq-img');
+                    const sceneNum = wrapper.getAttribute('data-scene').padStart(2, '0');
+
+                    if (img && img.style.opacity > 0.5) {
+                        sceneIndicatorLeft.textContent = sceneNum;
+                        sceneIndicatorRight.textContent = sceneNum;
+                        sceneIndicatorLeft.classList.add('opacity-100');
+                        sceneIndicatorLeft.classList.remove('opacity-40');
+                        sceneIndicatorRight.classList.add('opacity-100');
+                        sceneIndicatorRight.classList.remove('opacity-40');
+                    }
+                });
+            }
+
+            // Check periodically for opacity changes
+            setInterval(updateSceneIndicators, 100);
+            updateSceneIndicators();
+        });
+    </script>
 </section>
 
 <!-- Parallax Modern Section: Static BG, PNG Foreground Parallax, Text below -->
@@ -33,10 +83,10 @@
     <!-- Text Content Modern Layout -->
     <div class="absolute bottom-0 left-0 w-full flex flex-col md:flex-row justify-between items-end z-30 px-8 pb-12 gap-8">
         <div class="text-white max-w-xl mb-8 md:mb-0">
-            <h2 class="text-4xl md:text-6xl font-bold leading-tight drop-shadow-lg mb-4 text-reveal">Ready for electric<br>exploration</h2>
+            <h2 class="text-4xl md:text-6xl font-bold leading-tight drop-shadow-lg mb-4">Ready for electric<br>exploration</h2>
         </div>
         <div class="flex flex-col items-start md:items-end max-w-lg">
-            <p class="text-gray-200 text-lg mb-6 text-left md:text-right drop-shadow text-reveal">Dengan desain premium, efek parallax modern, dan hanya mobil (PNG) yang bergerak saat scroll. Background dan teks tetap statis, menonjolkan produk secara sinematik.</p>
+            <p class="text-gray-200 text-lg mb-6 text-left md:text-right drop-shadow">Dengan desain premium, efek parallax modern, dan hanya mobil (PNG) yang bergerak saat scroll. Background dan teks tetap statis, menonjolkan produk secara sinematik.</p>
             <a href="#" class="bg-white text-black font-semibold rounded-full px-8 py-3 shadow-lg hover:bg-gray-200 transition-all text-lg">Explore produk</a>
         </div>
     </div>
@@ -101,10 +151,10 @@
                         </svg>
                     </button>
                         <div class="mt-8 md:mt-0">
-                            <h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-8 text-gray-900 tracking-tight uppercase text-reveal" style="font-family: 'Montserrat', Arial, sans-serif;">
+                            <h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-8 text-gray-900 tracking-tight uppercase" style="font-family: 'Montserrat', Arial, sans-serif;">
                                 <span x-text="slide.headline"></span>
                             </h2>
-                            <p class="text-xl text-gray-800 mb-12 max-w-lg font-medium text-reveal" style="font-family: 'Montserrat', Arial, sans-serif;">
+                            <p class="text-xl text-gray-800 mb-12 max-w-lg font-medium" style="font-family: 'Montserrat', Arial, sans-serif;">
                                 <span x-text="slide.desc"></span>
                             </p>
                             <a :href="slide.link" class="inline-flex items-center group text-xl font-semibold text-gray-900 hover:text-red-600 transition-colors">
@@ -141,42 +191,6 @@
         </div>
     </div>
 </section>
-</section>
-
-<!-- Text Reveal Animation CSS & JS -->
-<style>
-.text-reveal {
-    opacity: 0;
-    transform: translateY(12px);
-    transition:
-        opacity 0.6s cubic-bezier(0.23,1,0.32,1),
-        transform 0.6s cubic-bezier(0.23,1,0.32,1);
-    will-change: opacity, transform;
-}
-.text-reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
-}
-</style>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const revealEls = Array.from(document.querySelectorAll('.text-reveal'));
-    if (!revealEls.length) return;
-    const stagger = 100; // ms, between 80–120ms
-    function revealOnScroll() {
-        let delay = 0;
-        revealEls.forEach((el, i) => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 32) {
-                setTimeout(() => el.classList.add('revealed'), delay);
-                delay += stagger;
-            }
-        });
-    }
-    window.addEventListener('scroll', revealOnScroll, { passive: true });
-    revealOnScroll();
-});
-</script>
 
 
 </section>
